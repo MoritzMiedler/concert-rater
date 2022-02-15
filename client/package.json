@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@codekraft-studio/vue-record": "^0.0.3",
+    "axios": "^0.26.0",
     "core-js": "^3.6.5",
     "easy-js-camera": "^2.1.0",
     "easy-vue-camera": "^1.0.5",

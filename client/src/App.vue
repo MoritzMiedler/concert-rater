@@ -1,15 +1,33 @@
 <template>
-  <v-app>
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
+  <div>
+    <v-app>
+      <v-main>
+        <router-view :concerts="concerts" />
+      </v-main>
+    </v-app>
+  </div>
 </template>
 
 <script>
-export default {
-  name: "App",
+import axios from "axios";
 
-  data: () => ({}),
+export default {
+  data() {
+    return {
+      concerts: [],
+    };
+  },
+  methods: {
+    async getEvents() {
+      const res = await axios({ url: "http://localhost:3000/concerts", method: "GET" });
+      this.concerts = res.data;
+    },
+  },
+  created() {
+    this.getEvents();
+    console.log(this.concerts);
+  },
 };
 </script>
+
+<style lang="scss" scoped></style>

@@ -1,9 +1,22 @@
 <template>
-  <div></div>
+  <div>
+    <div v-for="(concert, i) in concerts" :key="i"><EventCard :concert="concert"></EventCard></div>
+  </div>
 </template>
 
 <script>
-export default {};
+import EventCard from "./EventCard.vue";
+
+export default {
+  props: {
+    concerts: {
+      type: Array,
+    },
+  },
+  components: {
+    EventCard,
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>
