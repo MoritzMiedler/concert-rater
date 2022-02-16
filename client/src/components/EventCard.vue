@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-card elevation="2">
-      <v-img :src="concert.image" height="100px"></v-img>
+    <v-card elevation="2" class="my-5">
+      <v-img :src="`data:image/png;base64,${concert.image}`"></v-img>
     </v-card>
   </div>
 </template>

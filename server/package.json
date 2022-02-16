@@ -16,6 +16,8 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "helmet": "^4.3.1",
+    "http-server": "^14.1.0",
+    "json-server": "^0.17.0",
     "morgan": "^1.10.0",
     "pg": "^8.6.0"
   },

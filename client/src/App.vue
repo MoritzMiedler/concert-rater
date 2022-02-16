@@ -19,15 +19,21 @@ export default {
   },
   methods: {
     async getEvents() {
-      const res = await axios({ url: "http://localhost:3000/concerts", method: "GET" });
-      this.concerts = res.data;
+      try {
+        console.log("Started");
+        const res = await axios({ url: "http://localhost:3000/concerts", method: "GET" });
+        console.log("Done");
+        this.concerts = res.data;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
-  created() {
-    this.getEvents();
+  async created() {
+    await this.getEvents();
     console.log(this.concerts);
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="css" scoped></style>
