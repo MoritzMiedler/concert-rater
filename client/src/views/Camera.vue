@@ -6,6 +6,7 @@
       :mustApprove="approved"
       output="blob"
       @approve="sendpicture()"
+      @close="backToEvent()"
     ></v-easy-camera>
   </div>
 </template>
@@ -27,7 +28,6 @@ export default {
   methods: {
     async sendpicture() {
       await {};
-      console.log(this.picture);
       const reader = new FileReader();
       reader.readAsDataURL(this.picture);
       // eslint-disable-next-line
@@ -35,6 +35,10 @@ export default {
         const base64data = reader.result;
         console.log(base64data);
       };
+      this.$emit("Image");
+    },
+    backToEvent() {
+      this.$router.push("/addEvent");
     },
   },
 };
