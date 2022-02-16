@@ -31,7 +31,6 @@ export default {
   },
   async created() {
     await this.getEvents();
-    console.log(this.concerts);
   },
 };
 </script>

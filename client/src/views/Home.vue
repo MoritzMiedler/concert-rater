@@ -1,6 +1,9 @@
 <template>
   <div>
     <EventCards :concerts="concerts"></EventCards>
+    <v-btn fab dark large color="#002539" fixed right bottom @click="goToAddEvent">
+      <v-icon dark>mdi-plus</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -15,6 +18,11 @@ export default {
   },
   components: {
     EventCards,
+  },
+  methods: {
+    goToAddEvent() {
+      this.$router.push("/addEvent");
+    },
   },
 };
 </script>
