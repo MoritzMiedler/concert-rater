@@ -21,11 +21,40 @@
         </v-col>
         <v-col class="col-2"></v-col>
       </v-row>
+      <v-row
+        ><v-col class="col-2"></v-col
+        ><v-col class="col-8">
+          <v-rating
+            color="warning"
+            class="d-flex justify-center"
+            hover
+            length="5"
+            size="30"
+            v-model="rating"
+          >
+          </v-rating></v-col
+        ><v-col class="col-2"></v-col>
+      </v-row>
+      <v-row>
+        <v-col class="col-2"></v-col
+        ><v-col class="col-8 d-flex justify-center"><RecordAudio></RecordAudio></v-col>
+        <v-col class="col-2"></v-col>
+      </v-row>
+
+      <v-row>
+        <v-col class="col-2"></v-col
+        ><v-col class="col-8 d-flex justify-center"
+          ><v-btn @click="getLocation()">Location</v-btn></v-col
+        >
+        <v-col class="col-2"></v-col>
+      </v-row>
     </div>
   </div>
 </template>
 
 <script>
+import RecordAudio from "../components/RecordAudio.vue";
+
 export default {
   methods: {
     goBack() {
@@ -34,15 +63,30 @@ export default {
     openCamera() {
       this.$router.push("/camera");
     },
+    getLocation() {
+      this.$getLocation({
+        enableHighAccuracy: true,
+        timeout: Infinity,
+      }).then((coordinates) => {
+        this.locY = coordinates.lat;
+        this.locX = coordinates.lng;
+        console.log(`${this.locY} und ${this.locX}`);
+      });
+    },
   },
   data() {
     return {
       image: "",
       audio: "",
-      rating: "",
+      rating: 0,
       date: "",
       name: "",
+      locX: "",
+      locY: "",
     };
+  },
+  components: {
+    RecordAudio,
   },
 };
 </script>

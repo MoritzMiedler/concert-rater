@@ -1,5 +1,5 @@
 <template>
-  <div><vue-record-audio mode="hold" @result="sendresult" /></div>
+  <div><vue-record-audio color="#002539" mode="hold" @result="sendresult" /></div>
 </template>
 
 <script>
