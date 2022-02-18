@@ -38,8 +38,8 @@
       <v-row>
         <v-col class="col-2"></v-col
         ><v-col class="col-8 d-flex justify-center"
-          ><RecordAudio @audio="setAudio"></RecordAudio
-        ></v-col>
+          ><vue-record-audio color="#002539" mode="hold" @result="sendresult"
+        /></v-col>
         <v-col class="col-2"></v-col>
       </v-row>
       <v-row>
@@ -61,8 +61,6 @@
 </template>
 
 <script>
-import RecordAudio from "../components/RecordAudio.vue";
-
 export default {
   methods: {
     goBack() {
@@ -81,23 +79,27 @@ export default {
       });
     },
     testInputs() {
-      console.log("NAME");
-      console.log(this.name);
-      console.log("////////////////");
-      console.log("IMAGE");
-      console.log(this.image);
-      console.log("////////////////");
-      console.log("RATING");
-      console.log(this.rating);
-      console.log("////////////////");
-      console.log("AUDIO");
-      console.log(this.audio);
-      console.log("////////////////");
-      console.log("COORDINATES");
-      console.log(`${this.locY} und ${this.locX}`);
+      console.log(this.finalObject());
     },
-    setAudio(audio) {
-      this.audio = audio;
+    sendresult(data) {
+      const reader = new FileReader();
+      reader.readAsDataURL(data);
+      // eslint-disable-next-line
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        this.audio = base64data;
+      };
+    },
+    finalObject() {
+      return {
+        title: this.name,
+        image: this.image,
+        rating: this.rating,
+        date: new Date(),
+        audio: this.audio,
+        locationY: this.locY,
+        locationX: this.locX,
+      };
     },
   },
   data() {
@@ -109,9 +111,6 @@ export default {
       locX: "",
       locY: "",
     };
-  },
-  components: {
-    RecordAudio,
   },
   props: {
     image: {

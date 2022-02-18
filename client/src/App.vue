@@ -22,7 +22,7 @@ export default {
     async getEvents() {
       try {
         console.log("Started");
-        const res = await axios({ url: "http://127.0.0.1/concerts", method: "GET" });
+        const res = await axios({ url: "http://127.0.0.1:3000/concerts", method: "GET" });
         console.log("Done");
         this.concerts = res.data;
       } catch (error) {

@@ -16,7 +16,7 @@ export default {
       // eslint-disable-next-line
       reader.onloadend = () => {
         const base64data = reader.result;
-        this.$emit("audio", base64data);
+        this.audio = base64data;
       };
     },
   },
