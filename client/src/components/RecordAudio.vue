@@ -14,9 +14,9 @@ export default {
       const reader = new FileReader();
       reader.readAsDataURL(data);
       // eslint-disable-next-line
-      reader.onloadend = function () {
+      reader.onloadend = () => {
         const base64data = reader.result;
-        console.log(base64data);
+        this.$emit("audio", base64data);
       };
     },
   },

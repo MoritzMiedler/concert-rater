@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       picture: Blob,
+      picturebase64: "",
       fullscreen: true,
       approved: true,
     };
@@ -31,11 +32,12 @@ export default {
       const reader = new FileReader();
       reader.readAsDataURL(this.picture);
       // eslint-disable-next-line
-      reader.onloadend = function () {
+      reader.onloadend = () => {
         const base64data = reader.result;
-        console.log(base64data);
+        this.picturebase64 = base64data;
+        this.$emit("image", this.picturebase64);
+        this.$router.push("/addEvent");
       };
-      this.$emit("Image");
     },
     backToEvent() {
       this.$router.push("/addEvent");
