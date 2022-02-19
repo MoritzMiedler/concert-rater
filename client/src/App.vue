@@ -2,7 +2,7 @@
   <div>
     <v-app>
       <v-main>
-        <router-view :image="image" :concerts="concerts" @image="getImage" />
+        <router-view :image="image" :concerts="concerts" @image="getImage" @addEvent="addEvent" />
       </v-main>
     </v-app>
   </div>
@@ -31,6 +31,14 @@ export default {
     },
     getImage(picturebase64) {
       this.image = picturebase64;
+    },
+    async addEvent(eventObject) {
+      try {
+        await axios({ url: "http://127.0.0.1:3000/concerts", method: "POST" });
+        console.log(eventObject);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   async created() {

@@ -16,7 +16,9 @@
         <v-col class="col-2"></v-col>
         <v-col class="col-8">
           <div class="d-flex justify-center">
-            <v-btn large @click="openCamera"><v-icon color="#002539">mdi-camera</v-icon></v-btn>
+            <v-btn large @click="openCamera" color="#002539"
+              ><v-icon color="white">mdi-camera</v-icon></v-btn
+            >
           </div>
         </v-col>
         <v-col class="col-2"></v-col>
@@ -25,7 +27,7 @@
         ><v-col class="col-2"></v-col
         ><v-col class="col-8">
           <v-rating
-            color="warning"
+            color="#002539"
             class="d-flex justify-center"
             hover
             length="5"
@@ -45,16 +47,27 @@
       <v-row>
         <v-col class="col-2"></v-col
         ><v-col class="col-8 d-flex justify-center"
-          ><v-btn @click="getLocation()">Location</v-btn></v-col
+          ><v-btn @click="getLocation()" color="#002539" class="white--text">Location</v-btn></v-col
         >
         <v-col class="col-2"></v-col>
       </v-row>
+
       <v-row>
         <v-col class="col-2"></v-col
         ><v-col class="col-8 d-flex justify-center"
-          ><v-btn @click="testInputs()">TestInputs</v-btn></v-col
+          ><v-btn @click="addEvent()" color="#002539" class="white--text">AddEvent</v-btn></v-col
         >
         <v-col class="col-2"></v-col>
+      </v-row>
+
+      <v-row>
+        <v-col class="col-1"></v-col>
+        <v-col class="col-10"
+          ><v-alert v-if="alert" border="bottom" color="red" elevation="6" type="error">
+            Bitte alle Felder ausfüllen</v-alert
+          ></v-col
+        >
+        <v-col class="col-1"></v-col>
       </v-row>
     </div>
   </div>
@@ -78,9 +91,7 @@ export default {
         this.locX = coordinates.lng;
       });
     },
-    testInputs() {
-      console.log(this.finalObject());
-    },
+
     sendresult(data) {
       const reader = new FileReader();
       reader.readAsDataURL(data);
@@ -95,11 +106,32 @@ export default {
         title: this.name,
         image: this.image,
         rating: this.rating,
-        date: new Date(),
+        date: this.date,
         audio: this.audio,
         locationY: this.locY,
         locationX: this.locX,
       };
+    },
+    getDate() {
+      const todaydate = new Date();
+      // eslint-disable-next-line
+      this.date = todaydate.toISOString().split("T")[0];
+    },
+    addEvent() {
+      const eventObject = this.finalObject();
+      if (
+        eventObject.title === "" ||
+        eventObject.rating === 0 ||
+        eventObject.date === "" ||
+        eventObject.image === "" ||
+        eventObject.audio === "" ||
+        eventObject.locY === "" ||
+        eventObject.locX === ""
+      ) {
+        this.alert = true;
+      } else {
+        this.$emit("addEvent", eventObject);
+      }
     },
   },
   data() {
@@ -110,7 +142,11 @@ export default {
       name: "",
       locX: "",
       locY: "",
+      alert: false,
     };
+  },
+  created() {
+    this.getDate();
   },
   props: {
     image: {
