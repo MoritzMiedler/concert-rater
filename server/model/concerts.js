@@ -31,10 +31,10 @@ async function deleteConcert(id) {
   };
 }
 
-async function postConcert(title, image, rating, date, audio, locationY, locationX) {
+async function postConcert(title, image, rating, date, audio, locy, locx) {
   const { rows } = await db.query(
-    'INSERT INTO concerts (title, image, rating, date, audio, locationY, locationX) values  returning *;',
-    [id],
+    'INSERT INTO concerts (title, image, rating, date, audio, locy, locx) values ($1, $2, $3, $4, $5, $6, $7) returning *;',
+    [title, image, rating, date, audio, locy, locx],
   );
   return {
     code: 200,

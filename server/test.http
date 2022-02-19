@@ -1,2 +1,16 @@
 GET http://127.0.0.1:3000/concerts
 ##############
+POST http://127.0.0.1:3000/concerts
+content-type: application/json
+
+{
+    "title": "BRUH",
+    "image": "XYZ",
+    "rating":3,
+    "date": "2022-08-08",
+    "audio": "XYZ",
+    "locy": 12,
+    "locx": 13
+}
+##############
+DELETE http://127.0.0.1:3000/concerts/12

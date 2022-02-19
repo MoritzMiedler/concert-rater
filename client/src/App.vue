@@ -34,8 +34,13 @@ export default {
     },
     async addEvent(eventObject) {
       try {
-        await axios({ url: "http://127.0.0.1:3000/concerts", method: "POST" });
-        console.log(eventObject);
+        const res = await axios({
+          url: "http://127.0.0.1:3000/concerts",
+          method: "POST",
+          "content-type": "application/json",
+          data: eventObject,
+        });
+        console.log(res);
       } catch (error) {
         console.log(error);
       }
