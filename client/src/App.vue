@@ -2,7 +2,14 @@
   <div>
     <v-app>
       <v-main>
-        <router-view :image="image" :concerts="concerts" @image="getImage" @addEvent="addEvent" />
+        <router-view
+          :image="image"
+          :concerts="concerts"
+          @image="getImage"
+          @addEvent="addEvent"
+          @concert="getConcert"
+          :concertarr="concert"
+        />
       </v-main>
     </v-app>
   </div>
@@ -16,14 +23,13 @@ export default {
     return {
       concerts: [],
       image: "",
+      concert: [],
     };
   },
   methods: {
     async getEvents() {
       try {
-        console.log("Started");
         const res = await axios({ url: "http://127.0.0.1:3000/concerts", method: "GET" });
-        console.log("Done");
         this.concerts = res.data;
       } catch (error) {
         console.log(error);
@@ -41,6 +47,15 @@ export default {
           data: eventObject,
         });
         console.log(res);
+        this.getEvents();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getConcert(id) {
+      try {
+        const res = await axios({ url: `http://127.0.0.1:3000/concerts/${id}`, method: "GET" });
+        this.concert = res.data;
       } catch (error) {
         console.log(error);
       }

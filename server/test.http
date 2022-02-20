@@ -9,8 +9,10 @@ content-type: application/json
     "rating":3,
     "date": "2022-08-08",
     "audio": "XYZ",
-    "locy": 12,
-    "locx": 13
+    "locy": "12",
+    "locx": "13"
 }
 ##############
-DELETE http://127.0.0.1:3000/concerts/12
+DELETE http://127.0.0.1:3000/concerts/5
+##############
+GET http://127.0.0.1:3000/concerts/6

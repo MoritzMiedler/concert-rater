@@ -91,7 +91,6 @@ export default {
         this.locX = coordinates.lng;
       });
     },
-
     sendresult(data) {
       const reader = new FileReader();
       reader.readAsDataURL(data);
@@ -108,8 +107,8 @@ export default {
         rating: this.rating,
         date: this.date,
         audio: this.audio,
-        locationY: this.locY,
-        locationX: this.locX,
+        locy: this.locY,
+        locx: this.locX,
       };
     },
     getDate() {
@@ -147,6 +146,7 @@ export default {
   },
   created() {
     this.getDate();
+    this.getLocation();
   },
   props: {
     image: {

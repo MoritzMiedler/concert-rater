@@ -18,4 +18,15 @@ module.exports = {
     "operator-linebreak": process.env.NODE_ENV === "production" ? "warn" : "off",
     "comma-dangle": process.env.NODE_ENV === "production" ? "warn" : "off",
   },
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [
+          ["@", "./resources"],
+          ["~", "./resources/js"],
+        ],
+        extensions: [".js", ".vue"],
+      },
+    },
+  },
 };

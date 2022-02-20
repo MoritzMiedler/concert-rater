@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRecord from "@codekraft-studio/vue-record";
-// eslint-disable-next-line
 import VueGeolocation from "vue-browser-geolocation";
 import App from "./App.vue";
 import "./registerServiceWorker";

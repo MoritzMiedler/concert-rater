@@ -7,9 +7,16 @@ const routes = require('./routes/concerts.js');
 require('colors');
 require('dotenv').config();
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler.js');
-
+const bodyParser = require('body-parser');
 const app = express();
 
+app.use(
+  bodyParser.urlencoded({
+    limit: '5mb',
+    extended: false,
+  }),
+);
+app.use(bodyParser.json({ limit: '5mb' }));
 app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, '/public')));

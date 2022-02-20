@@ -7,7 +7,8 @@ const getConcerts = asyncHandler(async (req, res) => {
 });
 
 const getConcert = asyncHandler(async (req, res) => {
-  await concertModel.getConcert(req.params.id);
+  const { code, data } = await concertModel.getConcert(req.params.id);
+  res.status(code).json(data);
 });
 
 const deleteConcert = asyncHandler(async (req, res) => {
