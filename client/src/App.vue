@@ -23,14 +23,16 @@ export default {
     return {
       concerts: [],
       image: "",
-      concert: [],
+      concert: {},
     };
   },
   methods: {
     async getEvents() {
       try {
+        console.log("Started");
         const res = await axios({ url: "http://127.0.0.1:3000/concerts", method: "GET" });
         this.concerts = res.data;
+        console.log("Done");
       } catch (error) {
         console.log(error);
       }
@@ -55,7 +57,8 @@ export default {
     async getConcert(id) {
       try {
         const res = await axios({ url: `http://127.0.0.1:3000/concerts/${id}`, method: "GET" });
-        this.concert = res.data;
+        // eslint-disable-next-line
+        this.concert = res.data[0];
       } catch (error) {
         console.log(error);
       }

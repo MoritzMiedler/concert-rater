@@ -16,8 +16,8 @@ export default {
     id: {
       type: String,
     },
-    concertarr: {
-      type: Array,
+    concert: {
+      type: Object,
     },
   },
   methods: {
@@ -29,10 +29,11 @@ export default {
     await this.getConcert();
     // eslint-disable-next-line
     this.concert = this.concertarr[0];
+    this.image = this.concert.image;
   },
   data() {
     return {
-      concert: [],
+      image: "",
     };
   },
 };

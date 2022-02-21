@@ -8,7 +8,12 @@
       <v-row
         ><v-col class="col-2"></v-col>
         <v-col class="col-8"
-          ><v-text-field v-model="name" label="Name" hide-details="auto"></v-text-field
+          ><v-text-field
+            v-model="name"
+            label="Name"
+            :rules="rules"
+            hide-details="auto"
+          ></v-text-field
         ></v-col>
         <v-col class="col-2"></v-col>
       </v-row>
@@ -130,6 +135,7 @@ export default {
         this.alert = true;
       } else {
         this.$emit("addEvent", eventObject);
+        this.$router.push("/");
       }
     },
   },
@@ -142,6 +148,10 @@ export default {
       locX: "",
       locY: "",
       alert: false,
+      rules: [
+        (value) => !!value || "Required.",
+        (value) => (value && value.length <= 25) || "Max 25 characters",
+      ],
     };
   },
   created() {
