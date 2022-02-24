@@ -1,6 +1,10 @@
 <template>
   <div>
-    <EventCards :concerts="concerts"></EventCards>
+    <v-row>
+      <v-col class="col-1"></v-col>
+      <v-col class="col-10"><EventCards :concerts="concerts"></EventCards></v-col
+      ><v-col class="col-1"></v-col
+    ></v-row>
     <v-btn fab dark large color="#002539" fixed right bottom @click="goToAddEvent">
       <v-icon dark>mdi-plus</v-icon>
     </v-btn>

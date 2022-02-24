@@ -8,7 +8,7 @@
           @image="getImage"
           @addEvent="addEvent"
           @concert="getConcert"
-          :concertarr="concert"
+          :concert="concert"
         />
       </v-main>
     </v-app>
@@ -70,4 +70,8 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+body {
+  overflow-x: hidden;
+}
+</style>

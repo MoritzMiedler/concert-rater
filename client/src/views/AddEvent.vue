@@ -155,6 +155,7 @@ export default {
     };
   },
   created() {
+    window.scrollTo(0, 0);
     this.getDate();
     this.getLocation();
   },
