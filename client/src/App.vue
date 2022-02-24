@@ -59,6 +59,10 @@ export default {
         const res = await axios({ url: `http://127.0.0.1:3000/concerts/${id}`, method: "GET" });
         // eslint-disable-next-line
         this.concert = res.data[0];
+        const tempdate = this.concert.date.split("T");
+        tempdate.pop();
+        const date = tempdate[0].split("-").reverse();
+        this.concert.date = `${date[0]}.${date[1]}.${date[2]}`;
       } catch (error) {
         console.log(error);
       }
