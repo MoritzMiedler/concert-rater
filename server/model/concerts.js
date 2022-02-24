@@ -12,7 +12,7 @@ async function getConcert(id) {
   const { rows } = await db.query('SELECT * FROM concerts where id = $1;', [id]);
   return {
     code: 200,
-    data: rows,
+    data: rows[0],
   };
 }
 

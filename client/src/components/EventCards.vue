@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-for="(concert, i) in concerts" :key="i"><EventCard :concert="concert"></EventCard></div>
+    <div v-for="(concert, i) in concerts" :key="i">
+      <EventCard :concert="concert" @changeRouterView="changeRouterView"></EventCard>
+    </div>
   </div>
 </template>
 
@@ -15,6 +17,11 @@ export default {
   },
   components: {
     EventCard,
+  },
+  methods: {
+    changeRouterView(id) {
+      this.$emit("changeRouterView", id);
+    },
   },
 };
 </script>

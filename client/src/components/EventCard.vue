@@ -33,7 +33,7 @@ export default {
       this.newdate = `${date[0]}.${date[1]}.${date[2]}`;
     },
     goToEvent() {
-      this.$router.push(`/event/${this.concert.id}`);
+      this.$emit("changeRouterView", this.concert.id);
     },
   },
   created() {

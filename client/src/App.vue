@@ -9,6 +9,7 @@
           @addEvent="addEvent"
           @concert="getConcert"
           :concert="concert"
+          @changeRouterView="showEvent"
         />
       </v-main>
     </v-app>
@@ -24,6 +25,7 @@ export default {
       concerts: [],
       image: "",
       concert: {},
+      id: 0,
     };
   },
   methods: {
@@ -58,14 +60,20 @@ export default {
       try {
         const res = await axios({ url: `http://127.0.0.1:3000/concerts/${id}`, method: "GET" });
         // eslint-disable-next-line
-        this.concert = res.data[0];
+        this.concert = res.data;
         const tempdate = this.concert.date.split("T");
         tempdate.pop();
         const date = tempdate[0].split("-").reverse();
         this.concert.date = `${date[0]}.${date[1]}.${date[2]}`;
+        // eslint-disable-next-line
+        this.concert.audio = `data:audio/mpeg;${this.concert.audio.split(";").pop()}`;
+        // (this.concert.console.logaudio);
       } catch (error) {
         console.log(error);
       }
+    },
+    showEvent(id) {
+      this.$router.push(`/event/${id}`);
     },
   },
   async created() {

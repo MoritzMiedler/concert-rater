@@ -2,7 +2,8 @@
   <div>
     <v-row>
       <v-col class="col-1"></v-col>
-      <v-col class="col-10"><EventCards :concerts="concerts"></EventCards></v-col
+      <v-col class="col-10"
+        ><EventCards :concerts="concerts" @changeRouterView="changeRouterView"></EventCards></v-col
       ><v-col class="col-1"></v-col
     ></v-row>
     <v-btn fab dark large color="#002539" fixed right bottom @click="goToAddEvent">
@@ -26,6 +27,9 @@ export default {
   methods: {
     goToAddEvent() {
       this.$router.push("/addEvent");
+    },
+    changeRouterView(id) {
+      this.$emit("changeRouterView", id);
     },
   },
 };

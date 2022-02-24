@@ -25,14 +25,13 @@
             <v-col class="mx-3">{{ concert.date }}</v-col>
           </v-row>
           <v-row
-            ><v-col
-              ><audio controls>
-                <source :src="concert.audio" type="audio/mp3" />
-                Your browser does not support the audio tag.
-              </audio></v-col
-            >
-            <v-btn @click="testaudio"> testaudio</v-btn></v-row
-          >
+            ><v-col>
+              <av-line :line-width="2" line-color="#002539" :audio-src="concert.audio"></av-line
+            ></v-col>
+          </v-row>
+          <v-row>
+            <v-col><GmapMap :center="center" :zoom="12" /></v-col>
+          </v-row>
         </v-card>
       </v-col>
       <v-col class="col-1"></v-col>
@@ -54,25 +53,25 @@ export default {
     },
   },
   methods: {
-    getConcert() {
-      this.$emit("concert", this.id);
+    getConcert(id) {
+      this.$emit("concert", id);
     },
     goBack() {
       this.$router.push("/");
     },
-    testaudio() {
-      console.log(this.concert.audio);
-    },
   },
   created() {
-    this.getConcert();
+    this.getConcert(this.id);
     // eslint-disable-next-line
     this.image = this.concert.image;
+    this.audio = this.concert.audio;
   },
   data() {
     return {
       image: "",
       newdate: "",
+      audio: "",
+      center: { lat: 48, lng: 16 },
     };
   },
   components: {},
