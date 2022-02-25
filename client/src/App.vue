@@ -59,15 +59,14 @@ export default {
       try {
         const res = await axios({ url: `http://127.0.0.1:3000/concerts/${id}`, method: "GET" });
         const concert = res.data;
-        this.splitdate(concert.date);
+        concert.date = this.splitdate(concert.date);
+        // eslint-disable-next-line
         concert.audio = `data:audio/mpeg;${concert.audio.split(";").pop()}`;
         this.concert = concert;
-        console.log(concert);
       } catch (error) {
         console.log(error);
       }
     },
-
     splitdate(date) {
       const tempdate = date.split("T");
       tempdate.pop();
@@ -79,8 +78,7 @@ export default {
       this.getConcert(id).then(() => {
         this.$router.push(`/event/${id}`);
       });
-
-
+    },
   },
   async created() {
     await this.getEvents();
