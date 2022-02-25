@@ -7,9 +7,8 @@
           :concerts="concerts"
           @image="getImage"
           @addEvent="addEvent"
-          @concert="getConcert"
           :concert="concert"
-          @changeRouterView="showEvent"
+          @changeRouterView="changeView"
         />
       </v-main>
     </v-app>
@@ -59,21 +58,26 @@ export default {
     async getConcert(id) {
       try {
         const res = await axios({ url: `http://127.0.0.1:3000/concerts/${id}`, method: "GET" });
-        // eslint-disable-next-line
-        this.concert = res.data;
-        const tempdate = this.concert.date.split("T");
-        tempdate.pop();
-        const date = tempdate[0].split("-").reverse();
-        this.concert.date = `${date[0]}.${date[1]}.${date[2]}`;
-        // eslint-disable-next-line
-        this.concert.audio = `data:audio/mpeg;${this.concert.audio.split(";").pop()}`;
-        // (this.concert.console.logaudio);
+        const concert = res.data;
+        this.splitdate(concert.date);
+        concert.audio = `data:audio/mpeg;${concert.audio.split(";").pop()}`;
+        this.concert = concert;
+        console.log(concert);
       } catch (error) {
         console.log(error);
       }
     },
-    showEvent(id) {
-      this.$router.push(`/event/${id}`);
+    splitdate(date) {
+      const tempdate = date.split("T");
+      tempdate.pop();
+      // eslint-disable-next-line
+      const ndate = tempdate[0].split("-").reverse();
+      return `${ndate[0]}.${ndate[1]}.${ndate[2]}`;
+    },
+    changeView(id) {
+      this.getConcert(id).then(() => {
+        this.$router.push(`/event/${id}`);
+      });
     },
   },
   async created() {

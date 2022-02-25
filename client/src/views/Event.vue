@@ -30,7 +30,7 @@
             ></v-col>
           </v-row>
           <v-row>
-            <v-col><GmapMap :center="center" :zoom="12" /></v-col>
+            <v-col></v-col>
           </v-row>
         </v-card>
       </v-col>
@@ -71,7 +71,6 @@ export default {
       image: "",
       newdate: "",
       audio: "",
-      center: { lat: 48, lng: 16 },
     };
   },
   components: {},
