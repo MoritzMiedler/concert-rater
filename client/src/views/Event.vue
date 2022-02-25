@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import { nextTick } from "vue";
+
 export default {
   props: {
     id: {
@@ -70,8 +72,12 @@ export default {
     goBack() {
       this.$router.push("/");
     },
+    async loader() {
+      await nextTick();
+    },
   },
-  created() {
+  async created() {
+    await this.loader();
     try {
       this.getConcert(this.id);
       // eslint-disable-next-line

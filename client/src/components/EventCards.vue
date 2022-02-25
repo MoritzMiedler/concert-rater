@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import EventCard from "./EventCard.vue";
-
 export default {
   props: {
     concerts: {
@@ -16,7 +14,7 @@ export default {
     },
   },
   components: {
-    EventCard,
+    EventCard: () => import("./EventCard.vue"),
   },
   methods: {
     changeRouterView(id) {
