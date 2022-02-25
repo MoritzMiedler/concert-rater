@@ -30,7 +30,18 @@
             ></v-col>
           </v-row>
           <v-row>
-            <v-col><GmapMap :center="center" :zoom="12" /></v-col>
+            <v-col
+              ><div>
+                <iframe
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  loading="lazy"
+                  allowfullscreen
+                  :src="src"
+                >
+                </iframe></div
+            ></v-col>
           </v-row>
         </v-card>
       </v-col>
@@ -61,17 +72,22 @@ export default {
     },
   },
   created() {
-    this.getConcert(this.id);
-    // eslint-disable-next-line
-    this.image = this.concert.image;
-    this.audio = this.concert.audio;
+    try {
+      this.getConcert(this.id);
+      // eslint-disable-next-line
+      this.image = this.concert.image;
+      this.audio = this.concert.audio;
+    } catch (error) {
+      console.log(error);
+    }
+    this.src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyA1AQ2uRN2iQbotNBzzrE5FutPW7zSMu8Q&q=${this.concert.locy},${this.concert.locx}`;
   },
   data() {
     return {
       image: "",
       newdate: "",
       audio: "",
-      center: { lat: 48, lng: 16 },
+      src: "",
     };
   },
   components: {},

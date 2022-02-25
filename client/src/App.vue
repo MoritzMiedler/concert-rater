@@ -73,6 +73,7 @@ export default {
       }
     },
     showEvent(id) {
+      console.log(id);
       this.$router.push(`/event/${id}`);
     },
   },
