@@ -6,9 +6,10 @@
           :image="image"
           :concerts="concerts"
           @image="getImage"
-          @addEvent="addEvent"
+          @addEvent="addConcert"
           :concert="concert"
           @changeRouterView="changeView"
+          @delete="deleteConcert"
         />
       </v-main>
     </v-app>
@@ -43,14 +44,12 @@ export default {
     },
     async addEvent(eventObject) {
       try {
-        const res = await axios({
+        await axios({
           url: "http://127.0.0.1:3000/concerts",
           method: "POST",
           "content-type": "application/json",
           data: eventObject,
         });
-        console.log(res);
-        this.getEvents();
       } catch (error) {
         console.log(error);
       }
@@ -77,6 +76,20 @@ export default {
     changeView(id) {
       this.getConcert(id).then(() => {
         this.$router.push(`/event/${id}`);
+      });
+    },
+    async deleteConcert(id) {
+      await axios({ method: "DELETE", url: `http://127.0.0.1:3000/concerts/${id}` }).then(() => {
+        this.getEvents().then(() => {
+          this.$router.push("/");
+        });
+      });
+    },
+    addConcert(obj) {
+      this.addEvent(obj).then(() => {
+        this.getEvents().then(() => {
+          this.$router.push("/");
+        });
       });
     },
   },

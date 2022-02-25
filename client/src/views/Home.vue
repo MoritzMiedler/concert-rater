@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row>
+    <v-row class="mt-5">
       <v-col class="col-1"></v-col>
       <v-col class="col-10"
         ><EventCards :concerts="concerts" @changeRouterView="changeRouterView"></EventCards></v-col

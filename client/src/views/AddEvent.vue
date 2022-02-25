@@ -87,13 +87,10 @@ export default {
     openCamera() {
       this.$router.push("/camera");
     },
-    getLocation() {
-      this.$getLocation({
-        enableHighAccuracy: true,
-        timeout: Infinity,
-      }).then((coordinates) => {
-        this.locY = coordinates.lat;
-        this.locX = coordinates.lng;
+    async getLocation() {
+      await navigator.geolocation.getCurrentPosition((position) => {
+        this.locY = position.coords.latitude;
+        this.locX = position.coords.longitude;
       });
     },
     sendresult(data) {
@@ -135,7 +132,6 @@ export default {
         this.alert = true;
       } else {
         this.$emit("addEvent", eventObject);
-        this.$router.push("/");
       }
     },
   },
@@ -157,7 +153,7 @@ export default {
   created() {
     window.scrollTo(0, 0);
     this.getDate();
-    this.getLocation();
+    // this.getLocation();
   },
   props: {
     image: {
