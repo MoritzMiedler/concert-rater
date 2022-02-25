@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import EventCards from "../components/EventCards.vue";
-
 export default {
   props: {
     concerts: {
@@ -22,7 +20,7 @@ export default {
     },
   },
   components: {
-    EventCards,
+    EventCards: () => import("../components/EventCards.vue"),
   },
   methods: {
     goToAddEvent() {

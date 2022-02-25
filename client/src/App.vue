@@ -67,6 +67,7 @@ export default {
         console.log(error);
       }
     },
+
     splitdate(date) {
       const tempdate = date.split("T");
       tempdate.pop();
@@ -78,7 +79,8 @@ export default {
       this.getConcert(id).then(() => {
         this.$router.push(`/event/${id}`);
       });
-    },
+
+
   },
   async created() {
     await this.getEvents();

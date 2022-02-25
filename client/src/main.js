@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRecord from "@codekraft-studio/vue-record";
 import VueGeolocation from "vue-browser-geolocation";
 import AudioVisual from "vue-audio-visual";
-
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";

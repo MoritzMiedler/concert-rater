@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { nextTick } from "vue";
+
 export default {
   props: {
     id: {
@@ -59,12 +61,21 @@ export default {
     goBack() {
       this.$router.push("/");
     },
+    async loader() {
+      await nextTick();
+    },
   },
-  created() {
-    this.getConcert(this.id);
-    // eslint-disable-next-line
-    this.image = this.concert.image;
-    this.audio = this.concert.audio;
+  async created() {
+    await this.loader();
+    try {
+      this.getConcert(this.id);
+      // eslint-disable-next-line
+      this.image = this.concert.image;
+      this.audio = this.concert.audio;
+    } catch (error) {
+      console.log(error);
+    }
+    this.src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyA1AQ2uRN2iQbotNBzzrE5FutPW7zSMu8Q&q=${this.concert.locy},${this.concert.locx}`;
   },
   data() {
     return {
