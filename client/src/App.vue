@@ -32,7 +32,7 @@ export default {
     async getEvents() {
       try {
         console.log("Started");
-        const res = await axios({ url: "http://127.0.0.1:3000/concerts", method: "GET" });
+        const res = await axios({ url: "/concerts", method: "GET" });
         this.concerts = res.data;
         console.log("Done");
       } catch (error) {
@@ -45,7 +45,7 @@ export default {
     async addEvent(eventObject) {
       try {
         await axios({
-          url: "http://127.0.0.1:3000/concerts",
+          url: "/concerts",
           method: "POST",
           "content-type": "application/json",
           data: eventObject,
@@ -56,7 +56,7 @@ export default {
     },
     async getConcert(id) {
       try {
-        const res = await axios({ url: `http://127.0.0.1:3000/concerts/${id}`, method: "GET" });
+        const res = await axios({ url: `/concerts/${id}`, method: "GET" });
         const concert = res.data;
         concert.date = this.splitdate(concert.date);
         // eslint-disable-next-line
@@ -79,7 +79,7 @@ export default {
       });
     },
     async deleteConcert(id) {
-      await axios({ method: "DELETE", url: `http://127.0.0.1:3000/concerts/${id}` }).then(() => {
+      await axios({ method: "DELETE", url: `/concerts/${id}` }).then(() => {
         this.getEvents().then(() => {
           this.$router.push("/");
         });
