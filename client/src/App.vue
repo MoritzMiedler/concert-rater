@@ -98,6 +98,7 @@ export default {
     },
     updateAvailable() {
       this.updateAv = true;
+      alert("RELOAD DAT BULLSHIT");
     },
   },
   async created() {
