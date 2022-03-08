@@ -1,4 +1,4 @@
-# concert_rater
+# Concert Rater
 
 ## Project setup
 ```

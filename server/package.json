@@ -1,5 +1,5 @@
 {
-  "name": "ConcertRater",
+  "name": "Concert Rater",
   "version": "1.0.0",
   "description": "Server to save concerts",
   "main": "app.js",
