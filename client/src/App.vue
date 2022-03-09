@@ -3,7 +3,7 @@
     <v-app>
       <v-main>
         <v-alert dense outlined type="error" class="justify center" v-if="updateAv">
-          Update verfügbar bitte die App<strong>RELOADEN</strong>
+          Update verfügbar bittte die App <strong>RELOADEN</strong>
         </v-alert>
         <router-view
           :image="image"

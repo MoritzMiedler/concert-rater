@@ -6,7 +6,7 @@ module.exports = {
       swSrc: "public/service-worker.js",
     },
     manifestOptions: {
-      name: "Concert Rater",
+      name: "ConcertRater",
       short_name: "CONRA",
       theme_color: "#002539",
       background_color: "#ffffff",
